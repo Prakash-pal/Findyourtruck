@@ -14,8 +14,8 @@ module.exports = {
             console.log(results.length);
             if(results.length <= 0){
                 
-                pool.query(`insert into users(user_id,phone_number, name,  customer_type, preferred_location, preferred_language, isRegistration_done, upload_aadhar) values(?,?,?,?,?,?,?,?)`,
-                [(data.user_id=udid),data.phone_number, data.name, data.customer_type, data.preferred_location,data.preferred_language, data.isRegistration_done,data.upload_aadhar],
+                pool.query(`insert into users(user_id,phone_number, name,  user_type, preferred_location, preferred_language, isRegistration_done, upload_aadhar) values(?,?,?,?,?,?,?,?)`,
+                [(data.user_id=udid),data.phone_number, data.name, data.user_type, data.preferred_location,data.preferred_language, data.isRegistration_done,data.upload_aadhar],
                 (error, results, fields) => {
                     if(error){
                         return callback(error);
