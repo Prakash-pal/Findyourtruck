@@ -24,6 +24,7 @@ const aadhaarDt = require("./aadhaarDetails/aadhaarDt.router");
 const tripDt = require("./postAtrip/trip.router");
 const trackingId = require("./trackingDetails/track.router");
 const revisedBudget = require("./revisedBudget/revised.router");
+const adminWebPanel = require("./adminWeb/admin.route");
 
 app.use(cors());
 app.use(express.json());
@@ -48,6 +49,8 @@ app.use("/aadhaar",aadhaarDt);
 app.use("/trip",tripDt);
 app.use("/track",trackingId);
 app.use("/revised",revisedBudget);
+
+app.use("/adminWeb",adminWebPanel);
 
 const port = process.env.APP_PORT || 4000;
 
