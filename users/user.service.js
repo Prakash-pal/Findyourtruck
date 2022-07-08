@@ -318,10 +318,21 @@ module.exports = {
             }
             results.preferredLocations = prefLocations;
 
-            //ratings deatils
-            pool.query(`SELECT* FROM ratings WHERE user_id = ?`,
+
+         //ratings deatils
+         pool.query(`SELECT* FROM ratings WHERE user_id = ?`,
             
-        [results.user_id],
+         [results.user_id],
+         (error, ratings, fields) => {
+             if(error){
+                 return callback(error);
+             }
+             results.userRatings = ratings;
+
+             //user avarage rating deatils
+             pool.query(`SELECT* FROM ratings WHERE user_id = ?`,
+
+             [results.user_id],
         (error, ratings, fields) => {
             if(error){
                 return callback(error);
@@ -334,7 +345,10 @@ module.exports = {
             }
             var average = averageSum/ratings.length
             average =  (Math.round(average * 100) / 100).toFixed(1);
-            results.userRatings = average;
+            results.avRating = average;
+
+
+
            
             //images deatils
             pool.query(`SELECT* FROM create_image WHERE user_id = ?`,
@@ -381,6 +395,8 @@ module.exports = {
         );
       }
       );
+    }
+    );
     }
     );
     }
